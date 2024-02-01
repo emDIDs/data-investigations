@@ -16,14 +16,23 @@
                 <img
                     class="standby-rocket"
                     id="got-it"
+                    alt="Rocket symbolizing I got it"
+                    role="button"
+                    tabindex="0"
                     src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
                 <img
                     class="standby-rocket"
                     id="getting-there"
+                    alt="Rocket symbolizing getting there"
+                    role="button"
+                    tabindex="0"
                     src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
                 <img
                     class="standby-rocket"
                     id="not-yet"
+                    alt="Rocket symbolizing not yet"
+                    role="button"
+                    tabindex="0"
                     src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
             </div>
             <div id="thermometer">
@@ -32,6 +41,9 @@
             </div>
             <img
                 id="my-rocket"
+                alt="rocket"
+                role="button"
+                tabindex="0"
                 src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
         </div>
         <style>
@@ -173,7 +185,7 @@
             imgList.forEach((element) => {
               thermostat.classList.add("before");
               myRocket.classList.add("before");
-              element.addEventListener("click", (clicked) => {
+              function handleFlight(clicked){
                 console.log(clicked.target.getAttribute("id"));
                 thermostat.classList = "";
                 myRocket.classList = "";
@@ -191,6 +203,13 @@
               }
                 thermostat.style.transition = "0.8s";
                 myRocket.style.transition = "0.8s";
+              }
+              element.addEventListener("click", (clicked) => {
+                handleFlight(clicked)
+              });
+              element.addEventListener("keyup", (event) => {
+                if(event.code==="Space"){
+                handleFlight(event)}
               });
             });
         </script>
