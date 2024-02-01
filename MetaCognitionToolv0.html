@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="theme-color" content="#FFA000" />
+    </head>
+    <body>
+        <div style="display: flex; flex-direction: row">
+            <div
+                style="display: flex; flex-direction: column; max-width: 100px">
+                <img
+                    id="got-it"
+                    style="transform: rotate(-45deg); filter: grayscale(1)"
+                    src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
+                <img
+                    id="getting-there"
+                    style="transform: rotate(-45deg); filter: grayscale(1)"
+                    src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
+                <img
+                    id="not-yet"
+                    style="transform: rotate(-45deg); filter: grayscale(1)"
+                    src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
+            </div>
+            <div style="max-width: 100px">
+                <img
+                    id="my-rocket"
+                    src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
+            </div>
+        </div>
+        <style>
+            #my-rocket.before {
+              transform: translateY(300px) rotate(-45deg);
+              max-height: 100px;
+            }
+            #my-rocket.after-not-yet {
+              transform: translateY(200px) rotate(-45deg);
+              max-height: 100px;
+            }
+            #my-rocket.after-getting-there {
+              transform: translateY(100px) rotate(-45deg);
+              max-height: 100px;
+            }
+            #my-rocket.after-got-it {
+              transform: rotate(-45deg);
+              max-height: 100px;
+            }
+        </style>
+        <script>
+            const myRocket = document.querySelectorAll("#my-rocket")[0];
+            const imgList = document.querySelectorAll("img");
+            const rocketSize = document.querySelectorAll("#not-yet")[0].offsetHeight;
+            imgList.forEach((element) => {
+              myRocket.classList.remove("after");
+
+              myRocket.classList.add("before");
+
+              element.addEventListener("click", (clicked) => {
+                console.log(clicked.target.getAttribute("id"));
+                myRocket.classList = "";
+                myRocket.classList.add("before");
+                myRocket.classList.add(
+                  "after-".concat(clicked.target.getAttribute("id"))
+                );
+                myRocket.classList.remove("before");
+                console.log(myRocket);
+                myRocket.style.transition = "0.8s";
+              });
+            });
+        </script>
+    </body>
+</html>

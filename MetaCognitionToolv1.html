@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="theme-color" content="#FFA000" />
+    </head>
+    <body>
+        <div style="display: flex; flex-direction: row">
+            <div id="word-div">
+                <p>I got it!</p>
+                <p>On my way</p>
+                <p>Getting started</p>
+            </div>
+            <div id="rocket-div">
+                <img
+                    id="my-rocket"
+                    src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
+            </div>
+            <div
+                id="image-div"
+                style="display: flex; flex-direction: column; max-width: 100px">
+                <img
+                    class="standby-rocket"
+                    id="got-it"
+                    src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
+                <img
+                    class="standby-rocket"
+                    id="getting-there"
+                    src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
+                <img
+                    class="standby-rocket"
+                    id="not-yet"
+                    src="https://d3cy9zhslanhfa.cloudfront.net/media/A945DE76-2587-49E2-87321DFF88139192/255AFA16-9126-4419-AB4356E8B90E1F65/Small_Web%20Ready-FatCat_EM2_10_RocketShip_F.jpg" />
+            </div>
+        </div>
+        <style>
+            p{
+              display: inline-block;
+              vertical-align: middle;
+              text-align:center;
+              height:50px;
+              margin: auto;
+              padding-top: 30px;
+            }
+            .standby-rocket{
+              filter:grayscale(1);transform:rotate(-45deg);
+            }
+            #word-div{
+              display: flex; flex-direction: column; max-width: 100px;height:300px;
+            }
+            #rocket-div{
+              max-width: 30px; border: black solid 2px; border-radius: 25px; margin:20px 20px 100px 20px; height:250px;
+
+            }
+            #image-div{
+              padding-top:15px;
+            }
+
+              #my-rocket.before {
+                transform: translateY(475px) rotate(-45deg);
+                max-height: 100px;
+              }
+              #my-rocket.after-not-yet {
+                transform: translateY(325px) rotate(-45deg);
+                max-height: 100px;
+              }
+              #my-rocket.after-getting-there {
+                transform: translateY(225px) rotate(-45deg);
+                max-height: 100px;
+              }
+              #my-rocket.after-got-it {
+                transform: translateY(125px) rotate(-45deg);
+                max-height: 100px;
+              }
+        </style>
+        <script>
+            const myRocket = document.querySelectorAll("#my-rocket")[0];
+            const imgList = document.querySelectorAll("img");
+            const rocketSize = document.querySelectorAll("#not-yet")[0].offsetHeight;
+            imgList.forEach((element) => {
+              myRocket.classList.remove("after");
+
+              myRocket.classList.add("before");
+
+              element.addEventListener("click", (clicked) => {
+                console.log(clicked.target.getAttribute("id"));
+                myRocket.classList = "";
+                myRocket.classList.add("before");
+                myRocket.classList.add(
+                  "after-".concat(clicked.target.getAttribute("id"))
+                );
+                myRocket.classList.remove("before");
+                console.log(myRocket);
+                myRocket.style.transition = "0.8s";
+              });
+            });
+        </script>
+    </body>
+</html>
