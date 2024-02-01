@@ -33,63 +33,129 @@
             </div>
         </div>
         <style>
-            p{
-              display: inline-block;
-              vertical-align: middle;
-              text-align:center;
-              height:50px;
-              margin: auto;
-              padding-top: 30px;
+            @font-face {
+                font-family: "CircularStd";
+                src: local("./fonts/CircularStd-Black.otf") format("opentype");
+                font-weight: 900;
             }
-            .standby-rocket{
-              filter:grayscale(1);transform:rotate(-45deg);
+            @font-face {
+                font-family: "CircularStd";
+                src: local("./fonts/CircularStd-BlackItalic.otf") format("opentype");
+                font-weight: 900;
+                font-style: italic;
             }
-            #word-div{
-              display: flex; flex-direction: column; max-width: 100px;height:300px;
+            @font-face {
+                font-family: "CircularStd";
+                src: local("./fonts/CircularStd-Bold.otf") format("opentype");
+                font-weight: 700;
             }
-            #rocket-div{
-              max-width: 30px; border: black solid 2px; border-radius: 25px; margin:20px 20px 100px 20px; height:250px;
+            @font-face {
+                font-family: "CircularStd";
+                src: local("./fonts/CircularStd-BoldItalic.otf") format("opentype");
+                font-weight: 700;
+                font-style: italic;
+            }
+            @font-face {
+                font-family: "CircularStd";
+                src: local("./fonts/CircularStd-Book.otf") format("opentype");
+                font-weight: 400;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "CircularStd";
+                src: local("./fonts/CircularStd-BookItalic.otf") format("opentype");
+                font-weight: 400;
+                font-style: italic;
+            }
+            @font-face {
+                font-family: "CircularStd";
+                src: local("./fonts/CircularStd-Medium.otf") format("opentype");
+                font-weight: 500;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "CircularStd";
+                src: local("./fonts/CircularStd-MediumItalic.otf") format("opentype");
+                font-weight: 500;
+                font-style: italic;
+            }
+            @font-face {
+                font-family: "Short Stack";
+                src: local("./fonts/ShortStack-Regular.ttf") format("truetype");
+                font-weight: 400;
+                font-style: normal;
+            }
 
+            body {
+                font-family: "CircularStd", sans-serif;
+                font-size: 16px;
+                background-color: rgb(247, 248, 249);
             }
-            #image-div{
-              padding-top:15px;
+            p {
+                display: inline-block;
+                vertical-align: middle;
+                text-align: center;
+                height: 50px;
+                margin: auto;
+                padding-top: 30px;
+            }
+            img {
+                mix-blend-mode: multiply;
+            }
+            .standby-rocket {
+                filter: grayscale(1);
+                transform: rotate(-45deg);
+            }
+            #word-div {
+                display: flex;
+                flex-direction: column;
+                max-width: 100px;
+                height: 300px;
+            }
+            #rocket-div {
+                max-width: 40px;
+                border: black solid 2px;
+                border-radius: 25px;
+                margin: 20px 20px 100px 20px;
+                height: 250px;
+            }
+            #image-div {
+                padding-top: 20px;
             }
 
-              #my-rocket.before {
-                transform: translateY(475px) rotate(-45deg);
+            #my-rocket.before {
+                transform: translateX(-30px) translateY(300px) rotate(-45deg);
                 max-height: 100px;
-              }
-              #my-rocket.after-not-yet {
-                transform: translateY(325px) rotate(-45deg);
+            }
+            #my-rocket.after-not-yet {
+                transform: translateX(-30px) translateY(200px) rotate(-45deg);
                 max-height: 100px;
-              }
-              #my-rocket.after-getting-there {
-                transform: translateY(225px) rotate(-45deg);
+            }
+            #my-rocket.after-getting-there {
+                transform: translateX(-30px) translateY(100px) rotate(-45deg);
                 max-height: 100px;
-              }
-              #my-rocket.after-got-it {
-                transform: translateY(125px) rotate(-45deg);
+            }
+            #my-rocket.after-got-it {
+                transform: translateX(-30px) rotate(-45deg);
                 max-height: 100px;
-              }
+            }
         </style>
         <script>
             const myRocket = document.querySelectorAll("#my-rocket")[0];
             const imgList = document.querySelectorAll("img");
             const rocketSize = document.querySelectorAll("#not-yet")[0].offsetHeight;
             imgList.forEach((element) => {
-              myRocket.classList.remove("after");
-
               myRocket.classList.add("before");
-
               element.addEventListener("click", (clicked) => {
                 console.log(clicked.target.getAttribute("id"));
                 myRocket.classList = "";
                 myRocket.classList.add("before");
-                myRocket.classList.add(
+                if(clicked.target.getAttribute("id")!=="my-rocket")
+                {myRocket.classList.add(
                   "after-".concat(clicked.target.getAttribute("id"))
                 );
-                myRocket.classList.remove("before");
-                console.log(myRocket);
+                myRocket.classList.remove("before")
+                }
                 myRocket.style.transition = "0.8s";
               });
             });
