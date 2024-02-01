@@ -131,44 +131,65 @@
                 margin: 20px 20px 100px 20px;
                 height: 200px;
                 border-radius: 0px 0px 25px 25px;
-
+            }
+            #rocket-div2.before {
+                height:0;
+            }
+            #rocket-div2.after-not-yet {
+                height: 100px;
+            }
+            #rocket-div2.after-getting-there {
+                height: 200px;
+            }
+            #rocket-div2.after-got-it {
+                height: 301px;
+                border-radius: 25px;
             }
             #image-div {
                 padding-top: 20px;
             }
             #my-rocket.before {
-                transform: translateX(-30px) translateY(300px) rotate(-45deg);
+                transform: translateX(-80px) translateY(300px) rotate(-45deg);
                 max-height: 100px;
             }
             #my-rocket.after-not-yet {
-                transform: translateX(-30px) translateY(200px) rotate(-45deg);
+                transform: translateX(-80px) translateY(200px) rotate(-45deg);
                 max-height: 100px;
             }
             #my-rocket.after-getting-there {
-                transform: translateX(-30px) translateY(100px) rotate(-45deg);
+                transform: translateX(-80px) translateY(100px) rotate(-45deg);
                 max-height: 100px;
             }
             #my-rocket.after-got-it {
-                transform: translateX(-30px) rotate(-45deg);
+                transform: translateX(-80px) rotate(-45deg);
                 max-height: 100px;
             }
         </style>
         <script>
             const myRocket = document.querySelectorAll("#my-rocket")[0];
+            const thermostat = document.querySelectorAll("#rocket-div2")[0];
             const imgList = document.querySelectorAll("img");
             const rocketSize = document.querySelectorAll("#not-yet")[0].offsetHeight;
             imgList.forEach((element) => {
+              thermostat.classList.add("before");
               myRocket.classList.add("before");
               element.addEventListener("click", (clicked) => {
                 console.log(clicked.target.getAttribute("id"));
+                thermostat.classList = "";
                 myRocket.classList = "";
+                thermostat.classList.add("before");
                 myRocket.classList.add("before");
                 if(clicked.target.getAttribute("id")!=="my-rocket")
-                {myRocket.classList.add(
+                {thermostat.classList.add(
                   "after-".concat(clicked.target.getAttribute("id"))
                 );
+                myRocket.classList.add(
+                  "after-".concat(clicked.target.getAttribute("id"))
+                );
+                thermostat.classList.remove("before")
                 myRocket.classList.remove("before")
-                }
+              }
+                thermostat.style.transition = "0.8s";
                 myRocket.style.transition = "0.8s";
               });
             });
