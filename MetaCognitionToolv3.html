@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="theme-color" content="#FFA000" />
+    </head>
+    <body>
+        <div style="display: flex; flex-direction: row">
+            <div id="getting-started" class="circle"></div>
+            <div id="getting-started-connector" class="connector"></div>
+            <div id="on-my-way" class="circle"></div>
+            <div id="on-my-way-connector" class="connector"></div>
+            <div id="almost-got-it" class="circle"></div>
+            <div id="almost-got-it-connector" class="connector"></div>
+            <div id="got-it" class="circle"></div>
+            <div id="got-it-connector-border" class="connector">
+                <div id="got-it-connector" class="connector"></div>
+            </div>
+        </div>
+        <style>
+            .circle{
+              display:absolute;
+              border: 10px rgb(0,127,175) solid;
+              border-radius:50%;
+              width: 100px;
+              height: 100px;
+              aspect-ratio:1;
+            }
+            .connector{
+              border-top: 10px rgb(0,127,175) solid;
+              border-bottom: 10px rgb(0,127,175) solid;
+              margin-top: 35px;
+              margin-bottom: 35px;
+              margin-left: -10px;
+              margin-right: -10px;
+              width: 100px;
+            }
+            #got-it-connector{
+              display: inline-block;
+              position: relative;
+              border: 10px rgb(0,127,175) solid;
+              width: 150px;
+              height: 150px;
+              clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+              background-color: white;
+              border: solid rgb(0,127,175) 10px;
+            }
+            /* #got-it-connector-border{
+              display: absolute;
+
+              clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+              background-color: white;
+              border: solid rgb(0,127,175) 10px;
+            } */
+            .fill{
+              background-color: rgb(0,127,175)
+            }
+        </style>
+        <script>
+            const circleList = document.querySelectorAll(".circle");
+            circleList.forEach((element) => {
+              element.addEventListener("click", (clicked) => {
+                console.log(clicked.target.getAttribute("id"));
+                const connector = document.getElementById(clicked.target.getAttribute("id").concat("-connector"))
+                element.classList = "circle";
+                connector.classList = "connector";
+                element.classList.add("fill");
+                connector.classList.add("fill");
+                console.log(element);
+                element.style.transition = "0.8s";
+                connector.style.transition = "0.8s";
+              });
+            });
+        </script>
+    </body>
+</html>
